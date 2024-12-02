@@ -12,6 +12,9 @@ def formatinput(str):
 def checkDecreasing(list):
     index = 0
     for index in range(len(list)):
+        # Break when the index is the last value
+        if (index == len(list) - 1):
+            return True
         diff = list[index] - list[index + 1]
         if diff > 3 or diff < 1:
             return False
@@ -19,6 +22,9 @@ def checkDecreasing(list):
 def checkIncreasing(list):
     index = 0
     for index in range(len(list)):
+        # Break when the index is the last value
+        if (index == len(list) - 1):
+            return True
         # For increasing, the difference will be negative
         # i.e. 6 - 7 = -1
         # Multiply by -1 to check the pattern is correct
@@ -33,16 +39,20 @@ def checkLevel(list):
     outcome = False
     for i in range(len(list)):
         for j in range(len(list[i])):
-            difference = list[i][j] - list[i][j]
-            if difference > 0:
-                # Send out to another function to check specifics
-                # Return T / F
-                outcome = checkDecreasing(list[i])
-            elif difference < 1:
-                outcome = checkIncreasing(list[i])
+            # Break when the index is the last value
+            if (j == len(list[i]) - 1):
+                break
             else:
-                # Handle cases with no difference 
-                outcome = False
+                difference = list[i][j] - list[i][j + 1]
+                if difference > 0:
+                    # Send out to another function to check specifics
+                    # Return T / F
+                    outcome = checkDecreasing(list[i])
+                elif difference < 1:
+                    outcome = checkIncreasing(list[i])
+                else:
+                    # Handle cases with no difference 
+                    outcome = False
         if (outcome == True):
             output.append(list[i])
     return len(output)
