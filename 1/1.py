@@ -27,4 +27,14 @@ def calculateDistance (list):
             total += dist
     return total
 
-print(calculateDistance(formatinput(input)))
+# print(calculateDistance(formatinput(input)))
+
+def countOccurences(list):
+    total = 0
+    i = 0
+    for i in range(len(list[0])):
+        occurences = list[1].count(list[0][i])
+        total += list[0][i] * occurences
+    return total
+
+print(countOccurences(formatinput(input)))
