@@ -9,28 +9,26 @@ def formatinput(str):
             reports[i][j] = int(reports[i][j])
     return reports
 
-def checkDecreasing(list):
-    index = 0
-    for index in range(len(list)):
-        # Break when the index is the last value
-        if (index == len(list) - 1):
-            return True
-        diff = list[index] - list[index + 1]
-        if diff > 3 or diff < 1:
-            return False
+def checkValues(list, str, run):
+    # Introduce a factor which is set to -1 when the list is increasing
+    # Otherwise, it's 1
+    factor = 1
+    if (str == 'inc'):
+        factor =  -1
 
-def checkIncreasing(list):
     index = 0
     for index in range(len(list)):
         # Break when the index is the last value
         if (index == len(list) - 1):
             return True
-        # For increasing, the difference will be negative
-        # i.e. 6 - 7 = -1
-        # Multiply by -1 to check the pattern is correct
-        diff = (list[index] - list[index + 1]) * -1
+        diff = (list[index] - list[index + 1]) * factor
         if diff > 3 or diff < 1:
-            return False
+            if run == 1:
+                return False
+            else:
+                # Pass the list to the dampener with the problem val removed
+                del list[index]
+                return checkValues(list, str, 1)
 
 
 def checkLevel(list):
@@ -39,17 +37,18 @@ def checkLevel(list):
     outcome = False
     for i in range(len(list)):
         for j in range(len(list[i])):
+            print(len(list[i]), j)
             # Break when the index is the last value
-            if (j == len(list[i]) - 1):
+            if (j == len(list[i]) - 1) or (j == len(list[i])):
                 break
             else:
                 difference = list[i][j] - list[i][j + 1]
                 if difference > 0:
                     # Send out to another function to check specifics
                     # Return T / F
-                    outcome = checkDecreasing(list[i])
+                    outcome = checkValues(list[i], 'dec', 0)
                 elif difference < 1:
-                    outcome = checkIncreasing(list[i])
+                    outcome = checkValues(list[i], 'inc', 0)
                 else:
                     # Handle cases with no difference 
                     outcome = False
