@@ -30,28 +30,20 @@ def checkValues(list, str, run):
                 del list[index]
                 return checkValues(list, str, 1)
 
+def checkDifferences(list):
+    differences = []
+    for i in range(len(list) - 1):
+        diff = list[i] - list[i + 1]
+        differences.append(diff)
+    return all(1 <= el <= 3 for el in differences) or all(-1 >= el >= -3 for el in differences)
+
 
 def checkLevel(list):
     i = 0
     output = []
     outcome = False
     for i in range(len(list)):
-        for j in range(len(list[i])):
-            print(len(list[i]), j)
-            # Break when the index is the last value
-            if (j == len(list[i]) - 1) or (j == len(list[i])):
-                break
-            else:
-                difference = list[i][j] - list[i][j + 1]
-                if difference > 0:
-                    # Send out to another function to check specifics
-                    # Return T / F
-                    outcome = checkValues(list[i], 'dec', 0)
-                elif difference < 1:
-                    outcome = checkValues(list[i], 'inc', 0)
-                else:
-                    # Handle cases with no difference 
-                    outcome = False
+        outcome = checkDifferences(list[i])
         if (outcome == True):
             output.append(list[i])
     return len(output)
