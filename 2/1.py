@@ -35,7 +35,13 @@ def checkDifferences(list):
     for i in range(len(list) - 1):
         diff = list[i] - list[i + 1]
         differences.append(diff)
-    return all(1 <= el <= 3 for el in differences) or all(-1 >= el >= -3 for el in differences)
+    countsafe = 0
+    for i in range(len(differences)):
+        if 1<= differences[i] <= 3:
+            countsafe += 1
+        elif -1 >= differences[i] >= -3:
+            countsafe -= 1
+    return countsafe == len(list) - 1 or countsafe * -1 == len(list) - 1
 
 
 def checkLevel(list):
