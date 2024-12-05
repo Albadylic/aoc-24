@@ -41,7 +41,20 @@ def checkDifferences(list):
             countsafe += 1
         elif -1 >= differences[i] >= -3:
             countsafe -= 1
-    return countsafe == len(list) - 1 or countsafe * -1 == len(list) - 1
+
+    if abs(countsafe) == len(list) - 1 or abs(countsafe) == len(list) + 1:
+        # print(f"list: {len(list)}, countsafe: {countsafe}")
+        return True
+    elif abs(countsafe) == len(list) - 2 or abs(countsafe) == len(list) + 2:
+        # print(f"list: {len(list)}, countsafe: {countsafe}")
+        return True
+    else:
+        # if (len{list})
+        print(f"list: {len(list)}, countsafe: {countsafe}")
+        return False
+
+    # Countsafe can be equal to the length of the list
+    # or it can be one less than the length
 
 
 def checkLevel(list):
