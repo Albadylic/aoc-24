@@ -21,3 +21,17 @@ Adapting my solution to work for inputs with one out of place number seemed stra
 However, we needed instead to delete an index and then check. My first attempt was to try deleting each value and then calling the function again. This level of recursion however, sent in the list with values removed until only one value existed and every input returned true.
 
 Back to the drawing board...
+
+### 3/12
+
+Exercise one was a fun opportunity to play with regex and learn about the functions available in python with regex.
+
+I was able to use three of the four available functions:
+
+1. `findall()` to search for all occurences of the required string
+1. `sub()` allowed me to remove the _fluff_ from the strings which matched, i.e. the `mul(` and final closing bracket. I subbed these with an empty string to remove.
+1. `split()` to split the number around the comma to get the two parameters
+
+I then used the inbuilt sum function to add all the numbers after multiplying them.
+
+My final line is a wee bit of a whacky one liner which sums and completes a double map 🤪
