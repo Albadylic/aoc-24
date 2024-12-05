@@ -43,19 +43,16 @@ def checkDifferences(list):
             countsafe -= 1
 
     if abs(countsafe) == len(list) - 1 or abs(countsafe) == len(list) + 1:
-        # print(f"list: {len(list)}, countsafe: {countsafe}")
-        return True
-    elif abs(countsafe) == len(list) - 2 or abs(countsafe) == len(list) + 2:
-        # print(f"list: {len(list)}, countsafe: {countsafe}")
         return True
     else:
-        # if (len{list})
-        print(f"list: {len(list)}, countsafe: {countsafe}")
+        for i in range(len(list)):
+            listCopy = list
+            print("1: ",listCopy)
+            del listCopy[i]
+            print("2: ",listCopy)
+            if checkDifferences(listCopy):
+                return True
         return False
-
-    # Countsafe can be equal to the length of the list
-    # or it can be one less than the length
-
 
 def checkLevel(list):
     i = 0
